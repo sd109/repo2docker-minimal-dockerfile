@@ -12,7 +12,11 @@ What this means in practice is that the `notebook` package must be installed and
 RUN pip install --no-cache notebook
 ```
 
-That's *almost* everything.
+Note that if you are not installing `jupyterlab` in addition to the classic `notebook`,
+you'll need to change your mybinder.org URLs from `/lab` to `/tree` as described
+[here](https://mybinder.readthedocs.io/en/latest/howto/user_interface.html#jupyterlab).
+Otherwise, you might get a "404: Not Found" error when launching your project on binder.
+Now that's *almost* everything.
 
 The remaining piece is that the specified user must be able to *start* the notebook,
 which requires certain permissions like being able to write to the home directory.
