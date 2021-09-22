@@ -4,12 +4,12 @@
 
 [Binder](https://mybinder.org) needs only one thing for images to work:
 
-- to be able to launch `jupyter notebook` as a specified user (passed via docker build args as NB_UID/NB_USER)
+- to be able to launch `jupyter notebook` with jupyterlab as a specified user (passed via docker build args as NB_UID/NB_USER)
 
-What this means in practice is that the `notebook` package must be installed and on PATH:
+What this means in practice is that the `notebook` and `jupyterlab` packages must be installed and on PATH:
 
 ```docker
-RUN pip install --no-cache notebook
+RUN pip install --no-cache notebook jupyterlab
 ```
 
 Note that if you are not installing `jupyterlab` in addition to the classic `notebook`,
@@ -25,8 +25,8 @@ The absolute bare minimum for this is to set HOME to `/tmp` so that it's writabl
 which would make the shortest, smallest Dockerfile that works on Binder:
 
 ```docker
-FROM python:3.7-slim
-RUN pip install --no-cache notebook
+FROM python:3.9-slim
+RUN pip install --no-cache notebook jupyterlab
 ENV HOME=/tmp
 ```
 
