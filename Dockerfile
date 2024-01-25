@@ -1,13 +1,17 @@
 # FROM python:3.9-slim
-
+# Use a more complete base image
 FROM ubuntu:22.04
+
+# Install arbitrary OS packages
 RUN apt-get update && apt-get install -y \
-    python3-pip \
     curl \
     netcat
 
+# Install other programming languages
+RUN curl -fsSL https://install.julialang.org | sh -s -- -y
 
-# install the notebook package
+# install the required notebook packages
+RUN apt-get update && apt-get install -y python3-pip
 RUN pip install --no-cache --upgrade pip && \
     pip install --no-cache notebook jupyterlab
 
